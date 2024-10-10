@@ -3,6 +3,7 @@ title: "eGPU setup on a Lenovo T530 laptop"
 date: 2024-10-08
 draft: false
 coverCaption: Photo by [Backpack Studio](https://unsplash.com/@backpackstudio) on [Unsplash](https://unsplash.com).
+url: egpu-setup-on-a-lenovo-t530-laptop
 ---
 
 This guide covers the setup of an eGPU system on a Lenovo ThinkPad T530 laptop, running Windows 10. If you're just looking for how to create a DSDT substitution XML file it's [here](#dsdt-substitution-file).
