@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The gooLAB blog :test_tube:</title>
+    <link>https://goolab.co.uk/</link>
+    <description>Recent content on The gooLAB blog :test_tube:</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Tue, 08 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://goolab.co.uk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>eGPU setup on Lenovo T530 laptop</title>
+      <link>https://goolab.co.uk/posts/egpu-setup-on-lenovo-t530-laptop/</link>
+      <pubDate>Tue, 08 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>https://goolab.co.uk/posts/egpu-setup-on-lenovo-t530-laptop/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

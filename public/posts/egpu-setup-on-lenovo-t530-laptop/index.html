@@ -1,0 +1,1337 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html
+  lang="en"
+  dir="ltr"
+  class="scroll-smooth"
+  data-default-appearance="dark"
+  data-auto-appearance="true"
+><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FFFFFF" />
+  
+  <title>eGPU setup on Lenovo T530 laptop &middot; The gooLAB blog 🧪</title>
+    <meta name="title" content="eGPU setup on Lenovo T530 laptop &middot; The gooLAB blog 🧪" />
+  
+  
+  
+  
+  
+  <script
+    type="text/javascript"
+    src="/js/appearance.min.8a082f81b27f3cb2ee528df0b0bdc39787034cf2cc34d4669fbc9977c929023c.js"
+    integrity="sha256-iggvgbJ/PLLuUo3wsL3Dl4cDTPLMNNRmn7yZd8kpAjw="
+  ></script>
+  
+  
+  
+  
+  
+  
+  
+  
+  <link
+    type="text/css"
+    rel="stylesheet"
+    href="/css/main.bundle.min.2a23580ebf81ac1c441802d036c1299a2c62fa03b1eb381eefd26d502494a2bd.css"
+    integrity="sha256-KiNYDr&#43;BrBxEGALQNsEpmixi&#43;gOx6zge79JtUCSUor0="
+  />
+  
+  
+  
+  
+  
+  
+  
+  <meta
+    name="description"
+    content="
+      
+        
+      
+    "
+  />
+  
+  
+  
+  <link rel="canonical" href="https://goolab.co.uk/posts/egpu-setup-on-lenovo-t530-laptop/" />
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+  
+  
+  
+  
+  
+  
+  
+  <meta property="og:url" content="https://goolab.co.uk/posts/egpu-setup-on-lenovo-t530-laptop/">
+  <meta property="og:site_name" content="The gooLAB blog :test_tube:">
+  <meta property="og:title" content="eGPU setup on Lenovo T530 laptop">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-10-08T00:00:00+00:00">
+    <meta property="article:modified_time" content="2024-10-08T00:00:00+00:00">
+    <meta property="og:image" content="https://goolab.co.uk/posts/egpu-setup-on-lenovo-t530-laptop/cover.jpg">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://goolab.co.uk/posts/egpu-setup-on-lenovo-t530-laptop/cover.jpg">
+  <meta name="twitter:title" content="eGPU setup on Lenovo T530 laptop">
+
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleSection": "Posts",
+    "name": "eGPU setup on Lenovo T530 laptop",
+    "headline": "eGPU setup on Lenovo T530 laptop",
+    
+    
+    "inLanguage": "en",
+    "url" : "https:\/\/goolab.co.uk\/posts\/egpu-setup-on-lenovo-t530-laptop\/",
+    "author" : {
+      "@type": "Person",
+      "name": "goochmonster"
+    },
+    "copyrightYear": "2024",
+    "dateCreated": "2024-10-08T00:00:00\u002b00:00",
+    "datePublished": "2024-10-08T00:00:00\u002b00:00",
+    
+    "dateModified": "2024-10-08T00:00:00\u002b00:00",
+    
+    
+    
+    "mainEntityOfPage": "true",
+    "wordCount": "2704"
+  }
+  </script>
+    
+    <script type="application/ld+json">
+    {
+   "@context": "https://schema.org",
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+     {
+       "@type": "ListItem",
+       "item": "https://goolab.co.uk/",
+       "name": "The Goo Lab Blog Test Tube",
+       "position": 1
+     },
+     {
+       "@type": "ListItem",
+       "item": "https://goolab.co.uk/posts/",
+       "name": "Posts",
+       "position": 2
+     },
+     {
+       "@type": "ListItem",
+       "name": "E Gpu Setup on Lenovo T530 Laptop",
+       "position": 3
+     }
+   ]
+ }
+  </script>
+
+  
+  <meta name="author" content="goochmonster" />
+  
+    
+      <link href="mailto:admin@goolab.co.uk" rel="me" />
+    
+  
+  
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+
+
+  
+  
+</head>
+<body
+    class="m-auto flex h-screen max-w-7xl flex-col bg-neutral px-6 text-lg leading-7 text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32"
+  >
+    <div id="the-top" class="absolute flex self-center">
+      <a
+        class="-translate-y-8 rounded-b-lg bg-primary-200 px-3 py-1 text-sm focus:translate-y-0 dark:bg-neutral-600"
+        href="#main-content"
+        ><span class="pe-2 font-bold text-primary-600 dark:text-primary-400">&darr;</span
+        >Skip to main content</a
+      >
+    </div>
+    
+    
+      <header class="py-6 font-semibold text-neutral-900 dark:text-neutral sm:py-10 print:hidden">
+  <nav class="flex items-start justify-between sm:items-center">
+    
+    <div class="flex flex-row items-center">
+      
+  <a
+    class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2"
+    rel="me"
+    href="/"
+    >The gooLAB blog 🧪</a
+  >
+
+    </div>
+    
+    
+      <ul class="flex list-none flex-col text-end sm:flex-row">
+        
+          
+            
+            <li class="group mb-1 sm:mb-0 sm:me-7 sm:last:me-0.5">
+              
+                <a
+                  href="/posts/"
+                  title=""
+                  
+                  ><span
+                      class="decoration-primary-500 group-hover:underline group-hover:decoration-2 group-hover:underline-offset-2"
+                      >Blog</span
+                    >
+                  </a
+                >
+              
+            </li>
+          
+            
+              
+          
+        
+      </ul>
+    
+  </nav>
+</header>
+
+    
+    <div class="relative flex grow flex-col">
+      <main id="main-content" class="grow">
+        
+  <article>
+    <header class="max-w-prose">
+      
+      <h1 class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+        eGPU setup on Lenovo T530 laptop
+      </h1>
+      
+        <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+          
+
+
+
+
+
+  
+  
+
+
+
+  
+
+  
+  
+    
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+
+  <div class="flex flex-row flex-wrap items-center">
+    
+    
+      <time datetime="2024-10-08 00:00:00 &#43;0000 UTC">8 October 2024</time><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">13 mins</span>
+    
+
+    
+    
+  </div>
+
+  
+  
+
+
+        </div>
+      
+      
+        <div class="prose">
+          
+          
+          
+          
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mb-6 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/posts/egpu-setup-on-lenovo-t530-laptop/cover_hu15878188168705318101.webp 330w,/posts/egpu-setup-on-lenovo-t530-laptop/cover_hu17275798513795479190.webp 660w
+            
+              ,/posts/egpu-setup-on-lenovo-t530-laptop/cover_hu426645048304803782.webp 1024w
+            
+            
+              ,/posts/egpu-setup-on-lenovo-t530-laptop/cover_hu11066655327120362397.webp 1320w
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="2400"
+        height="1600"
+        class="mb-6 rounded-md"
+        
+        
+        
+          src="/posts/egpu-setup-on-lenovo-t530-laptop/cover_hu12608881391289499151.jpg"
+          srcset="/posts/egpu-setup-on-lenovo-t530-laptop/cover_hu8038889008488163502.jpg 330w,/posts/egpu-setup-on-lenovo-t530-laptop/cover_hu12608881391289499151.jpg 660w
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/cover_hu5143822085510542654.jpg 1024w
+          
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/cover_hu12147897214322290167.jpg 1320w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+          
+            <figcaption class="-mt-3 mb-6 text-center">Photo by <a href="https://unsplash.com/@backpackstudio" target="_blank" rel="noreferrer">Backpack Studio</a> on <a href="https://unsplash.com" target="_blank" rel="noreferrer">Unsplash</a>.</figcaption>
+          
+        </div>
+      
+    </header>
+    <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
+      
+        <div class="order-first px-0 lg:order-last lg:max-w-xs lg:ps-8">
+          <div class="toc pe-5 lg:sticky lg:top-10 print:hidden">
+            <details open class="-ms-5 mt-0 overflow-hidden rounded-lg ps-5">
+  <summary
+    class="block cursor-pointer bg-neutral-100 py-1 ps-5 text-lg font-semibold text-neutral-800 dark:bg-neutral-700 dark:text-neutral-100 lg:hidden"
+  >
+    Table of Contents
+  </summary>
+  <div class="border-s border-dotted border-neutral-300 py-2 ps-5 dark:border-neutral-600">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#interrobangwhats-egpu">⁉️What&rsquo;s eGPU?</a></li>
+    <li><a href="#scrollegpu-requirements">📜eGPU requirements</a></li>
+    <li><a href="#hammerhardware-list">🔨Hardware list</a></li>
+    <li><a href="#zappower-supply">⚡Power supply</a></li>
+    <li><a href="#computersoftware">💻Software</a></li>
+    <li><a href="#dsdt-substitution-file">DSDT substitution file</a>
+      <ul>
+        <li><a href="#warningerror-12">⚠️Error 12</a></li>
+        <li><a href="#bookshow-to-create-a-new-dst-file">📚How to create a new DST file</a></li>
+        <li><a href="#joysticknando4s-diy-egpu-setup-13x">🕹️Nando4&rsquo;s DIY eGPU Setup 1.3x</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</details>
+
+          </div>
+        </div>
+      
+      <div class="min-h-0 min-w-0 max-w-prose grow">
+        <p>This guide covers the setup of an eGPU system on a Lenovo ThinkPad T530 laptop, running Windows 10. If you&rsquo;re just looking for how to create a DSDT substitution XML file it&rsquo;s <a href="#dsdt-substitution-file">here</a>.
+The steps in this guide <em>should</em> work on other ThinkPads, and maybe even other brands of laptop. I can&rsquo;t test this to find out.</p>
+<div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span>
+  </span>
+  <span class="dark:text-neutral-300">EDIT: I originally wrote this post <strong>5 years ago</strong>, and then someone on Reddit moaned as this site was down, so I decided to post it again 😊.</span>
+</div>
+
+<h2 id="interrobangwhats-egpu" class="relative group">⁉️What&rsquo;s eGPU? <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#interrobangwhats-egpu" aria-label="Anchor">#</a></span></h2><p>A standalone desktop GPU card that connects to a laptop through an external port - that&rsquo;s the &rsquo;e&rsquo; bit in eGPU. You need a special adapter/dock and a cable to attach the GPU to the laptop. For my setup I also needed software to make the operating system recognize the GPU (I&rsquo;ll explain this more later). To power the adapter/dock and GPU, you can either use a desktop (ATX) power supply, or a &ldquo;power brick&rdquo; charger<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<p>An eGPU adds a boost in graphical performance. Laptops have either integrated (iGPU), or dedicated (dGPU) graphic chips, or sometimes both.
+Integrated graphics chips are very basic, they use some of the systems own RAM to operate and are not designed for any heavy lifting, like playing modern games. Dedicated chips mean they have there own RAM, and are more favorable for gaming, <strong>BUT</strong> even high-end dGPUs are still out-performed by low-end GPUs due to the physical limitations inside a laptop. An eGPU works around this limitation and although it has its downsides depending on the setup (e.g., PCIe lanes bottlenecks) it can be a cost effective way of getting a better gaming experience from an older laptop.</p>
+<p>People ask the question <em>“Why don&rsquo;t you just build a desktop?”</em>, and well the biggest benefits are <em>cost</em> and <em>flexibility</em>.</p>
+<p>A new rig is going to set you back <em>way</em> more than an eGPU. The idea is to make use of an old laptop after all. If you invest in a decent card you can always reuse it in a build further down the line.</p>
+<h2 id="scrollegpu-requirements" class="relative group">📜eGPU requirements <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#scrollegpu-requirements" aria-label="Anchor">#</a></span></h2><p>The components of a typical eGPU setup:</p>
+<ol>
+<li>PCIe x16 full-size desktop graphics card</li>
+<li>Graphics card adapter/dock</li>
+<li>Power supply for adapter/dock</li>
+<li>A laptop with any of these ports: ExpressCard, mPCIe, NGFF, M.2 and Thunderbolt</li>
+</ol>
+<p><em>Note: The processor will obviously have an effect on eGPU performance, and from what I have read you want at least an Intel Core 2 Duo or the equivalent AMD processor. The newer the better really. I have an Intel Core i5 3320M (3rd gen. Ivy Bridge CPU) which is over 5 years old now, so though it&rsquo;s possible to get a setup working with a Core 2 Duo it&rsquo;s best to stick to something less dated.</em></p>
+<p>There are numerous adapters on the market for connecting a graphics card to a laptop, and each adapter is available in a variety of different connector types. If your laptop doesn&rsquo;t have any of these ports, then an eGPU setup isn&rsquo;t going to be possible&hellip;</p>
+<p>This setup uses an ExpressCard port. The ExpressCard slot on my laptop is PCIe x1.2. This means it has 1 lane @ PCIe version 2.0 speeds. This information is very important as bus speed will usually be the bottleneck
+in any setup, so knowing this will help you decide if it&rsquo;s going to be worth the effort!</p>
+<h2 id="hammerhardware-list" class="relative group">🔨Hardware list <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#hammerhardware-list" aria-label="Anchor">#</a></span></h2><ul>
+<li>EVGA GTX 750Ti graphics card</li>
+<li>EXP GDC Beast v8 [ExpressCard version] dock (<em>banggood.com</em>)</li>
+<li>12v DC power brick (<em>model code: FSP096-AHA</em>)</li>
+<li>Thinkpad Lenovo T530 with ExpressCard port</li>
+<li>Full-HD external monitor, 1920x1080 resolution<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup></li>
+</ul>
+<h2 id="zappower-supply" class="relative group">⚡Power supply <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#zappower-supply" aria-label="Anchor">#</a></span></h2><p>The EVGA GTX 750Ti pulls in about 60 watts of power according to the specifications. The PCIe slot on the dock is able to supply 75 watts of power. Therefore, no additional 6-pin PCIe power cable is required.</p>
+<p>If you wanted to use a more powerful card you would need the 6-pin PCIe power cable which is available <a href="https://goo.gl/LyqmGN" target="_blank" rel="noreferrer">here for around £4</a>.
+The cable connects to the 6-pin (power out) port on the <strong>narrow-side</strong> of the V8 dock. Be careful not to confuse this with the 8-pin (power in) port on the long-side of the dock as this is the port you connect your power supply to if it has a 6-pin connector type.</p>
+<p>The power brick adapter I listed is only rated at 96 watts, so you <em>may</em> also need a power supply with a higher wattage if you use a different card. The Dell OptiPlex D220P is a power supply that is recommended often within the eGPU community as they&rsquo;re cheap, relatively small and offer a good amount of power. They&rsquo;re sold on eBay for around £15 and are rated at 220 watts.</p>
+<h2 id="computersoftware" class="relative group">💻Software <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#computersoftware" aria-label="Anchor">#</a></span></h2><ul>
+<li><a href="https://egpu.io/egpu-setup-13x/" target="_blank" rel="noreferrer">Nando4&rsquo;s DIY eGPU Setup version 1.30 software</a> (paid software)<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup></li>
+<li><a href="https://www.acpica.org/downloads/binary-tools" target="_blank" rel="noreferrer">IASL compiler and Windows ACPI tools</a> version 20150619</li>
+<li><a href="https://developer.microsoft.com/en-us/windows/hardware/windows-driver-kit" target="_blank" rel="noreferrer">Windows Driver Kit (WDK)</a> version 10.0.14393.0</li>
+<li>A free text editor like <a href="https://notepad-plus-plus.org/download/" target="_blank" rel="noreferrer">Notepad++</a> to edit some files</li>
+</ul>
+<h2 id="dsdt-substitution-file" class="relative group">DSDT substitution file <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#dsdt-substitution-file" aria-label="Anchor">#</a></span></h2><h3 id="warningerror-12" class="relative group">⚠️Error 12 <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#warningerror-12" aria-label="Anchor">#</a></span></h3><p>The dreaded <code>error 12</code> in Device Manager? If you&rsquo;ve found yourself plugging in your card, dock and laptop and for it not to work, you may need a DSDT substitution. In Device Manager the error details state: <code>This device cannot find enough free resources that it can use</code> when you boot up the laptop with the eGPU connected. I did <em>a lot</em> of digging into this issue and found out it was due to the DSDT table being confined to a 32-bit address space. What is a DSDT table? DSDT is the main table within ACPI, which is what determines how devices communicate with each other about power usage. It also does stuff with the configuration of plug n&rsquo; play devices. The problem is a GPU requires a lot of address space as it happens, more than is available in a 32-bit address space. This is the way it is because hardware manufacturers probably didn&rsquo;t anticipate the addition of other devices on to the system, so there was no need to use a bigger address space.</p>
+<p>The solution to this issue is to create a new DSDT table file that can accomodate other devices and then force the system to use this new address space.</p>
+<h3 id="bookshow-to-create-a-new-dst-file" class="relative group">📚How to create a new DST file <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#bookshow-to-create-a-new-dst-file" aria-label="Anchor">#</a></span></h3><ul>
+<li>
+<p>Disable Windows 10 from automatically downloading drivers: run <code>Sysdm.cpl</code> and click on the &ldquo;Hardware&rdquo; tab in the window. Click on &ldquo;Device Installation Settings&rdquo; and you want to choose &ldquo;No&rdquo; and save the changes</p>
+</li>
+<li>
+<p>Run DDU (Display Driver Uninstaller) to delete any NVidia drivers</p>
+</li>
+<li>
+<p>Extract the <code>iasl-win-20150619.zip</code> file to <code>C:\</code>. Make sure the extracted
+folder is called <code>iasl-win-20150619</code></p>
+</li>
+<li>
+<p>Install <code>wdksetup.msi</code> and use the default settings</p>
+</li>
+<li>
+<p>Install Notepad++ and use the defaults</p>
+</li>
+<li>
+<p>Create a new folder on <code>C:\</code> called <code>DSDT</code></p>
+</li>
+<li>
+<p>Open a Command Prompt as Administrator and run the following commands in order:</p>
+</li>
+</ul>
+<pre tabindex="0"><code>SET IASL=&#34;C:\iasl-win-20150619\&#34;
+SET ASL=&#34;C:\Program Files (x86)\Windows Kits\10\Tools\x64\ACPIVerify\&#34;
+CD C:\DSDT
+</code></pre><p><strong>Do not close the Command Prompt. If you do don&rsquo;t worry just open it again as an Administrator and run the commands above again.</strong></p>
+<ul>
+<li>Run this command in the Command Prompt</li>
+</ul>
+<pre tabindex="0"><code>%IASL%acpidump.exe -b
+</code></pre><p>Now you have these files: <code>dsdt.dat</code>, <code>facp.dat</code>, <code>facs.dat</code>, <code>xsdt.dat</code>. We are only interested in the <code>dsdt.dat</code> file.</p>
+<ul>
+<li>Now run this command (as an administrator):</li>
+</ul>
+<pre tabindex="0"><code>%IASL%iasl.exe dsdt.dat
+</code></pre><p>The <code>dsdt.dat</code> is now decompiled into an editable <code>dsdt.dsl</code> file.
+<strong>Do not close the command prompt you will need it later</strong>.</p>
+<ul>
+<li>Copy this chunk of code:</li>
+</ul>
+<pre tabindex="0"><code>QWordMemory (ResourceProducer, PosDecode, MinFixed, MaxFixed, Cacheable, ReadWrite,
+0x0000000000000000, // Granularity
+0x0000000C20000000, // Range Minimum,  set it to 48.5GB
+0x0000000E0FFFFFFF, // Range Maximum,  set it to 56.25GB
+0x0000000000000000, // Translation Offset
+0x00000001F0000000, // Length calculated by Range Max - Range Min.
+,, , AddressRangeMemory, TypeStatic)
+</code></pre><ul>
+<li>
+<p>Open <code>dsdt.dsl</code> in Notepad++ or any text editor</p>
+</li>
+<li>
+<p>Search for <code>DWordMemory</code> and <strong>after</strong> the last entry you want to carefully paste the chunk of code you copied (have a look at the picture it shows you what it should look like)</p>
+</li>
+</ul>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-qwordmemory_hu15852380052448299334.webp 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-qwordmemory_hu3278734007509881112.webp 660w
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-qwordmemory_hu16639755066484667719.webp 892w
+              
+            
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-qwordmemory_hu16639755066484667719.webp 892w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="892"
+        height="538"
+        class="mx-auto my-0 rounded-md"
+        alt="DSDT DSL DWordMemory"
+        loading="lazy" decoding="async"
+        
+          src="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-qwordmemory_hu17385925821374037132.jpg"
+          srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-qwordmemory_hu12216973173656605728.jpg 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-qwordmemory_hu17385925821374037132.jpg 660w
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-qwordmemory.jpg 892w
+          
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-qwordmemory.jpg 892w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<ul>
+<li>Still in <code>dsdt.dsl</code> search for this code:</li>
+</ul>
+<pre tabindex="0"><code>Name (_IRC, 0x00)  // _IRC: Inrush Current
+</code></pre><p>You will replace the above code with this code:</p>
+<pre tabindex="0"><code>Method (_IRC, 0, NotSerialized) { Return(0x00) }
+</code></pre><ul>
+<li>Still in <code>dsdl.dsl</code> at the top of the file in the <code>DefinitionBlock</code> change this:</li>
+</ul>
+<pre tabindex="0"><code>dsdt.aml
+</code></pre><p>To this:</p>
+<pre tabindex="0"><code>new.aml
+</code></pre><p>Here is a screenshot of what it should look like:</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-rename_hu13378811636136305813.webp 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-rename_hu596918551852927611.webp 660w
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-rename_hu13719583530730151805.webp 892w
+              
+            
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-rename_hu13719583530730151805.webp 892w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="892"
+        height="538"
+        class="mx-auto my-0 rounded-md"
+        alt="DSDT DSL Rename"
+        loading="lazy" decoding="async"
+        
+          src="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-rename_hu15510494216040803480.jpg"
+          srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-rename_hu13779870532290490415.jpg 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-rename_hu15510494216040803480.jpg 660w
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-rename.jpg 892w
+          
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-dsl-rename.jpg 892w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<ul>
+<li>
+<p>Now save the <code>dsdt.dsl</code> file and close the text editor</p>
+</li>
+<li>
+<p>Go back to the Command Prompt again and run this command:</p>
+</li>
+</ul>
+<pre tabindex="0"><code>%IASL%iasl.exe -oa dsdt.dsl
+</code></pre><p>This will compile your <code>dsdt.dsl</code> file that you modified and will output <code>new.aml</code>. The command should complete without <strong>any</strong> errors, warnings are fine and so is everything else just not any errors.</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-asl_hu11187104835269666488.webp 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-asl_hu8994500568950510854.webp 660w
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-asl_hu17662056890169442468.webp 983w
+              
+            
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-asl_hu17662056890169442468.webp 983w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="983"
+        height="105"
+        class="mx-auto my-0 rounded-md"
+        alt="DSDT ASL"
+        loading="lazy" decoding="async"
+        
+          src="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-asl_hu12584883272027850655.jpg"
+          srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-asl_hu10867290628371408231.jpg 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-asl_hu12584883272027850655.jpg 660w
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-asl.jpg 983w
+          
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-asl.jpg 983w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<ul>
+<li>Back into the Command Prompt again and run this command:</li>
+</ul>
+<pre tabindex="0"><code>%ASL%asl.exe /u new.aml
+</code></pre><p>This takes the <code>new.aml</code> file and outputs a <code>new.ASL</code> file.</p>
+<ul>
+<li>Open <code>new.ASL</code> in a text editor and copy this chunk of code:</li>
+</ul>
+<pre tabindex="0"><code>          Name(_CRS, Buffer(0x1ee)
+          {
+	0x88, 0x0d, 0x00, 0x02, 0x0c, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0x00,
+	0x00, 0x00, 0x00, 0x01, 0x47, 0x01, 0xf8, 0x0c, 0xf8, 0x0c, 0x01, 0x08,
+	0x88, 0x0d, 0x00, 0x01, 0x0c, 0x03, 0x00, 0x00, 0x00, 0x00, 0xf7, 0x0c,
+	0x00, 0x00, 0xf8, 0x0c, 0x88, 0x0d, 0x00, 0x01, 0x0c, 0x03, 0x00, 0x00,
+	0x00, 0x0d, 0xff, 0xff, 0x00, 0x00, 0x00, 0xf3, 0x87, 0x17, 0x00, 0x00,
+	0x0c, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0a, 0x00, 0xff, 0xff,
+	0x0b, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x87, 0x17,
+	0x00, 0x00, 0x0c, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0c, 0x00,
+	0xff, 0x3f, 0x0c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00,
+	0x87, 0x17, 0x00, 0x00, 0x0c, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40,
+	0x0c, 0x00, 0xff, 0x7f, 0x0c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40,
+	0x00, 0x00, 0x87, 0x17, 0x00, 0x00, 0x0c, 0x03, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x80, 0x0c, 0x00, 0xff, 0xbf, 0x0c, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x40, 0x00, 0x00, 0x87, 0x17, 0x00, 0x00, 0x0c, 0x03, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0xc0, 0x0c, 0x00, 0xff, 0xff, 0x0c, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x87, 0x17, 0x00, 0x00, 0x0c, 0x03,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0d, 0x00, 0xff, 0x3f, 0x0d, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x87, 0x17, 0x00, 0x00,
+	0x0c, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x0d, 0x00, 0xff, 0x7f,
+	0x0d, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x87, 0x17,
+	0x00, 0x00, 0x0c, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x0d, 0x00,
+	0xff, 0xbf, 0x0d, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00,
+	0x87, 0x17, 0x00, 0x00, 0x0c, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0,
+	0x0d, 0x00, 0xff, 0xff, 0x0d, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40,
+	0x00, 0x00, 0x87, 0x17, 0x00, 0x00, 0x0c, 0x03, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x0e, 0x00, 0xff, 0x3f, 0x0e, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x40, 0x00, 0x00, 0x87, 0x17, 0x00, 0x00, 0x0c, 0x03, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x40, 0x0e, 0x00, 0xff, 0x7f, 0x0e, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x87, 0x17, 0x00, 0x00, 0x0c, 0x03,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0x0e, 0x00, 0xff, 0xbf, 0x0e, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x87, 0x17, 0x00, 0x00,
+	0x0c, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0, 0x0e, 0x00, 0xff, 0xff,
+	0x0e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0x87, 0x17,
+	0x00, 0x00, 0x0c, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00,
+	0xff, 0xff, 0xbf, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xb0, 0xfe,
+	0x87, 0x17, 0x00, 0x00, 0x0c, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0xd4, 0xfe, 0xff, 0xbf, 0xd4, 0xfe, 0x00, 0x00, 0x00, 0x00, 0x00, 0xc0,
+	0x00, 0x00, 0x8a, 0x2b, 0x00, 0x00, 0x0c, 0x03, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20, 0x0c, 0x00, 0x00, 0x00,
+	0xff, 0xff, 0xff, 0x0f, 0x0e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xf0, 0x01, 0x00, 0x00, 0x00,
+	0x79, 0x00
+            })
+</code></pre><p>Note: This code will vary if you have a different model laptop. This code is what we have been working towards so far in this guide through decompiling, modifying and compiling our DSDT. It&rsquo;s best to save this code for safe keeping (just give it the <code>.txt</code> extension when you save.)</p>
+<ul>
+<li>We want to go back to the Command Prompt and run this command:</li>
+</ul>
+<pre tabindex="0"><code>%ASL%asl.exe /tab=DSDT
+</code></pre><p>This extracts our &lsquo;raw&rsquo; DSDT in its <code>.ASL</code> form (the command creates the <code>DSDT.ASL</code> file). The <code>DSDT.ASL</code> file is the one actually used by the system without any modification. <code>new.aml</code> is the file we modified to get that chunk of code which we now need to add to <code>DSDT.AML</code>.</p>
+<p>You may be thinking why not just use the modified <code>new.aml</code> file instead of creating a new one? Well, through the changes made to <code>new.aml</code> it may have introduced errors which will ruin everything, so it&rsquo;s best to generate a new DSDT file from scratch and only change as few parts as possible to maximize an error free file and your sanity.</p>
+<ul>
+<li>
+<p>Open <code>DSDT.ASL</code> in a text editor</p>
+</li>
+<li>
+<p>Search for the code:</p>
+</li>
+</ul>
+<pre tabindex="0"><code>Name(_CRS, Buffer(0x1c0)
+</code></pre><p>You will see a big chunk of code like the one you copied. You are going to replace it with what you copied. Be careful not to accidentally remove a curly bracket like one of these: <code>}</code></p>
+<ul>
+<li>Next still in the <code>DSDT.ASL</code> file search for this:</li>
+</ul>
+<pre tabindex="0"><code>ATMC()
+</code></pre><p>You will need to replace all instances of that with this instead:</p>
+<pre tabindex="0"><code>\_SB_.PCI0.LPC_.EC__.ATMC()
+</code></pre><ul>
+<li>
+<p>Save and close <code>DSDT.ASL</code></p>
+</li>
+<li>
+<p>Open the Command Prompt and run this command:</p>
+</li>
+</ul>
+<pre tabindex="0"><code>%ASL%asl.exe DSDT.ASL
+</code></pre><p>This compiles the <code>DSDT.ASL</code> into a <code>DSDT.AML</code> file. The <code>DSDT.AML</code> file is what we will now use with the DIY eGPU Setup 1.30 software.</p>
+<h3 id="joysticknando4s-diy-egpu-setup-13x" class="relative group">🕹️Nando4&rsquo;s DIY eGPU Setup 1.3x <span class="absolute top-0 w-6 transition-opacity opacity-0 -start-6 not-prose group-hover:opacity-100"><a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700" style="text-decoration-line: none !important;" href="#joysticknando4s-diy-egpu-setup-13x" aria-label="Anchor">#</a></span></h3><p>You&rsquo;ll need to go and buy <a href="https://egpu.io/egpu-setup-13x/" target="_blank" rel="noreferrer">Nando4&rsquo;s DIY eGPU Setup 1.3x</a> for the next part of this guide.</p>
+<ul>
+<li>
+<p>The zip file you receive, unzip it and run the executable which should copy a folder called <code>eGPU</code> to your <code>C:\</code> drive</p>
+</li>
+<li>
+<p>In the <code>eGPU</code> folder run the file called <code>setup-disk-image.bat</code> and follow the instructions in the window</p>
+</li>
+</ul>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-setup-installer_hu6830452226438069337.webp 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-setup-installer_hu10197021548424043010.webp 660w
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-setup-installer_hu5525724914430646245.webp 677w
+              
+            
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-setup-installer_hu5525724914430646245.webp 677w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="677"
+        height="342"
+        class="mx-auto my-0 rounded-md"
+        alt="DSDT Setup Installer"
+        loading="lazy" decoding="async"
+        
+          src="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-setup-installer_hu17235031280532616982.jpg"
+          srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-setup-installer_hu10214829071407440108.jpg 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-setup-installer_hu17235031280532616982.jpg 660w
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-setup-installer.jpg 677w
+          
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-setup-installer.jpg 677w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<ul>
+<li>
+<p>Now run the <code>eGPU-Setup-mount.bat</code> file. It will mount a drive named <code>DIYEGPUIMG</code></p>
+</li>
+<li>
+<p>Navigate to <code>DIYEGPUIMG</code> and open the <code>config</code> folder and open the <code>startup.bat</code> file with a text editor</p>
+</li>
+<li>
+<p>At the bottom of the <code>startup.bat</code> file add the following code:</p>
+</li>
+</ul>
+<pre tabindex="0"><code>call vidwait 60
+call vidinit -d %eGPU%
+call pci
+pt MEM writefromfile 1 0xDAFE8000 DSDT.AML
+:end
+call chainload mbr
+</code></pre><ul>
+<li>
+<p>Save the <code>startup.bat</code> file and close the text editor</p>
+</li>
+<li>
+<p>Copy the <code>DSDT.AML</code> file from the <code>C:\DSDT</code> folder into the <code>V:\config</code>
+folder</p>
+</li>
+</ul>
+<p>Note: <code>V:\</code> is the assigned drive letter when you run the <code>eGPU-Setup-mount.bat</code> file. The actual drive letter may vary depending on your system.</p>
+<ul>
+<li>Reboot your computer. Select DIY eGPU Setup 1.30 from the boot menu</li>
+</ul>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-boot_hu10432526712357510418.webp 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-boot_hu3454662373955548221.webp 660w
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-boot_hu14721431979888923347.webp 1024w
+              
+            
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-boot_hu14721431979888923347.webp 1024w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="1024"
+        height="768"
+        class="mx-auto my-0 rounded-md"
+        alt="DSDT Boot"
+        loading="lazy" decoding="async"
+        
+          src="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-boot_hu2487996627239245359.jpg"
+          srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-boot_hu14341975446338112548.jpg 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-boot_hu2487996627239245359.jpg 660w
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-boot.jpg 1024w
+          
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-boot.jpg 1024w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<ul>
+<li>From the menu select option 2: DIY eGPU Setup 1.30 : automated startup using startup.bat. This will force the system to use the 36-bit DSDT and allocate the GPU into it</li>
+</ul>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            
+              srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-menu_hu3020334135342023315.webp"
+            
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="640"
+        height="400"
+        class="mx-auto my-0 rounded-md"
+        alt="DSDT Menu"
+        loading="lazy" decoding="async"
+        
+          src="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-menu.jpg"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<ul>
+<li>When you log back into Windows open Device Manager and on the menu at the top of the window select <code>View &gt; Resources by type</code>. If your DSDT substitution was successful you should see a <code>Large Memory</code> object</li>
+</ul>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-memory_hu7983340699957494872.webp 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-memory_hu4095016796971150756.webp 660w
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-memory_hu18093470854186567697.webp 781w
+              
+            
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-memory_hu18093470854186567697.webp 781w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="781"
+        height="244"
+        class="mx-auto my-0 rounded-md"
+        alt="DSDT Memory"
+        loading="lazy" decoding="async"
+        
+          src="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-memory_hu9500394853233607244.jpg"
+          srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-memory_hu7695304616127344194.jpg 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-memory_hu9500394853233607244.jpg 660w
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-memory.jpg 781w
+          
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-memory.jpg 781w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<p><strong>Success!</strong> All you have to do now is install  the NVidia driver from the website <a href="http://www.geforce.com/drivers" target="_blank" rel="noreferrer">here</a> (or if you have a different brand of graphics card just have a search for the latest drivers from their website) and reboot your machine again.</p>
+<p>
+
+
+
+
+
+<figure>
+    
+    
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="mx-auto my-0 rounded-md"
+      
+    >
+      
+      
+      
+      
+        <source
+          
+            srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-gpu_hu2904185983249368277.webp 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-gpu_hu17655816592276851271.webp 660w
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-gpu_hu12916388852230062998.webp 781w
+              
+            
+            
+              
+                ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-gpu_hu12916388852230062998.webp 781w
+              
+            "
+          
+          sizes="100vw"
+          type="image/webp"
+        />
+      
+      <img
+        width="781"
+        height="360"
+        class="mx-auto my-0 rounded-md"
+        alt="DSDT GPU"
+        loading="lazy" decoding="async"
+        
+          src="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-gpu_hu951076687944002352.jpg"
+          srcset="/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-gpu_hu1401013504755611214.jpg 330w,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-gpu_hu951076687944002352.jpg 660w
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-gpu.jpg 781w
+          
+          
+            ,/posts/egpu-setup-on-lenovo-t530-laptop/dsdt-gpu.jpg 781w
+          "
+          sizes="100vw"
+        
+      />
+    </picture>
+  
+
+
+</figure>
+</p>
+<div class="flex rounded-md bg-primary-100 px-4 py-3 dark:bg-primary-900">
+  <span class="pe-3 text-primary-400">
+    <span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"/></svg>
+</span>
+  </span>
+  <span class="dark:text-neutral-300">The DSDT substitution is only applied until you next reboot your machine, so every time you boot you need to load the DSDT file with DIY eGPU Setup 1.3x to be able to use your graphics card.</span>
+</div>
+
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>You can only use a power brick charger if the power draw of your system is low enough.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>The monitor isn&rsquo;t required if you have an NVidia-based card and an Intel iGPU that supports Optimus. This will allow you to output the video to your laptops internal display. Note this carries a hefty performance penalty of around 20-30% from what I have read online, and if you factor in bandwidth restrictions when using a single PCIe lane, like in this setup over ExpressCard then this is just not feasible.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3">
+<p>Nando4&rsquo;s software is now version 1.35, but that won&rsquo;t matter as it&rsquo;s the same software but with added features and bug fixes. <strong>The versions of IASL and WDK are important</strong>. If you are having trouble getting your setup working make sure you use the same version IASL and WDK used in this guide.&#160;<a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
+      </div>
+    </section>
+    <footer class="max-w-prose pt-8 print:hidden">
+      
+  <div class="flex">
+    
+    
+    
+      
+      
+        
+        
+
+
+
+
+
+
+
+
+  
+    <picture
+      class="!mb-0 !mt-0 me-4 w-24 h-auto rounded-full"
+      
+    >
+      
+      
+      
+      
+      <img
+        width="480"
+        height="480"
+        class="!mb-0 !mt-0 me-4 w-24 h-auto rounded-full"
+        alt="goochmonster"
+        loading="lazy" decoding="async"
+        
+          src="/img/pufferfish.jpg"
+        
+      />
+    </picture>
+  
+
+
+      
+    
+    <div class="place-self-center">
+      
+        <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+          Author
+        </div>
+        <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+          goochmonster
+        </div>
+      
+      
+        <div class="text-sm text-neutral-700 dark:text-neutral-400">I like to tinker with tech 🐹.</div>
+      
+      <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+          style="will-change:transform;"
+          href="mailto:admin@goolab.co.uk"
+          target="_blank"
+          aria-label="Email"
+          rel="me noopener noreferrer"
+          ><span class="icon relative inline-block px-1 align-text-bottom"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1c-27.64 140.9 68.65 266.2 199.1 285.1c19.01 2.888 36.17-12.26 36.17-31.49l.0001-.6631c0-15.74-11.44-28.88-26.84-31.24c-84.35-12.98-149.2-86.13-149.2-174.2c0-102.9 88.61-185.5 193.4-175.4c91.54 8.869 158.6 91.25 158.6 183.2l0 16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98 .0036c-7.299 0-13.2 4.992-15.12 11.68c-24.85-12.15-54.24-16.38-86.06-5.106c-38.75 13.73-68.12 48.91-73.72 89.64c-9.483 69.01 43.81 128 110.9 128c26.44 0 50.43-9.544 69.59-24.88c24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3C495.1 107.1 361.2-9.332 207.8 20.73zM239.1 304.3c-26.47 0-48-21.56-48-48.05s21.53-48.05 48-48.05s48 21.56 48 48.05S266.5 304.3 239.1 304.3z"/></svg>
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
+    </div>
+  </div>
+
+
+      
+
+      
+  
+
+
+      
+    </footer>
+  </article>
+
+      </main>
+      
+        <div
+          class="pointer-events-none absolute bottom-0 end-0 top-[100vh] w-12"
+          id="to-top"
+          hidden="true"
+        >
+          <a
+            href="#the-top"
+            class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 backdrop-blur hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"
+            aria-label="Scroll to top"
+            title="Scroll to top"
+          >
+            &uarr;
+          </a>
+        </div>
+      <footer class="py-10 print:hidden">
+  
+  
+  <div class="flex items-center justify-between">
+    <div>
+      
+      
+        <p class="text-sm text-neutral-500 dark:text-neutral-400">
+            &copy;
+            2024
+            goochmonster
+        </p>
+      
+      
+      
+        <p class="text-xs text-neutral-500 dark:text-neutral-400">
+          
+          
+          Powered by <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500"
+            href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a> &amp; <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>
+        </p>
+      
+    </div>
+    <div class="flex flex-row items-center">
+      
+      
+      
+      
+    </div>
+  </div>
+  
+  
+</footer>
+
+    </div>
+  </body>
+</html>
