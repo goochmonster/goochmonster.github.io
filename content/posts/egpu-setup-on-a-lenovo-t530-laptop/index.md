@@ -1,5 +1,5 @@
 ---
-title: "eGPU setup on Lenovo T530 laptop"
+title: "eGPU setup on a Lenovo T530 laptop"
 date: 2024-10-08
 draft: false
 coverCaption: Photo by [Backpack Studio](https://unsplash.com/@backpackstudio) on [Unsplash](https://unsplash.com).
