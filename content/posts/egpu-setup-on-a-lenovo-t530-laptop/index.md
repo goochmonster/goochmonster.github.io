@@ -10,10 +10,10 @@ This guide covers the setup of an eGPU system on a Lenovo ThinkPad T530 laptop, 
 The steps in this guide *should* work on other ThinkPads, and maybe even other brands of laptop. I can't test this to find out.
 
 {{< alert "circle-info">}}
-EDIT: I originally wrote this post **5 years ago**, and then someone on Reddit moaned as this site was down, so I decided to post it again 😊.
+EDIT: I originally wrote this post **7 years ago**, and then someone on Reddit moaned as this site was down, so I decided to post it again 😊.
 {{< /alert >}}
 
-## :interrobang:What's eGPU?
+## :question: What's eGPU?
 
 A standalone desktop GPU card that connects to a laptop through an external port - that's the 'e' bit in eGPU. You need a special adapter/dock and a cable to attach the GPU to the laptop. For my setup I also needed software to make the operating system recognize the GPU (I'll explain this more later). To power the adapter/dock and GPU, you can either use a desktop (ATX) power supply, or a "power brick" charger[^1].
 
@@ -26,7 +26,7 @@ People ask the question *&ldquo;Why don't you just build a desktop?&rdquo;*, and
 
 A new rig is going to set you back _way_ more than an eGPU. The idea is to make use of an old laptop after all. If you invest in a decent card you can always reuse it in a build further down the line.
 
-## :scroll:eGPU requirements
+## :scroll: eGPU requirements
 
 The components of a typical eGPU setup:
 
@@ -42,7 +42,7 @@ There are numerous adapters on the market for connecting a graphics card to a la
 This setup uses an ExpressCard port. The ExpressCard slot on my laptop is PCIe x1.2. This means it has 1 lane @ PCIe version 2.0 speeds. This information is very important as bus speed will usually be the bottleneck
 in any setup, so knowing this will help you decide if it's going to be worth the effort!
 
-## :hammer:Hardware list
+## :hammer: Hardware list
 
 - EVGA GTX 750Ti graphics card
 - EXP GDC Beast v8 [ExpressCard version] dock (_banggood.com_)
@@ -50,7 +50,7 @@ in any setup, so knowing this will help you decide if it's going to be worth the
 - Thinkpad Lenovo T530 with ExpressCard port
 - Full-HD external monitor, 1920x1080 resolution[^2]
 
-## :zap:Power supply
+## :zap: Power supply
 
 The EVGA GTX 750Ti pulls in about 60 watts of power according to the specifications. The PCIe slot on the dock is able to supply 75 watts of power. Therefore, no additional 6-pin PCIe power cable is required.
 
@@ -61,7 +61,7 @@ The power brick adapter I listed is only rated at 96 watts, so you _may_ also ne
 
 [^2]: The monitor isn't required if you have an NVidia-based card and an Intel iGPU that supports Optimus. This will allow you to output the video to your laptops internal display. Note this carries a hefty performance penalty of around 20-30% from what I have read online, and if you factor in bandwidth restrictions when using a single PCIe lane, like in this setup over ExpressCard then this is just not feasible.
 
-## :computer:Software
+## :computer: Software
 
 - [Nando4's DIY eGPU Setup version 1.30 software](https://egpu.io/egpu-setup-13x/) (paid software)[^3]
 - [IASL compiler and Windows ACPI tools](https://www.acpica.org/downloads/binary-tools) version 20150619
@@ -72,13 +72,13 @@ The power brick adapter I listed is only rated at 96 watts, so you _may_ also ne
 
 ## DSDT substitution file
 
-### :warning:Error 12
+### :warning: Error 12
 
 The dreaded `error 12` in Device Manager? If you've found yourself plugging in your card, dock and laptop and for it not to work, you may need a DSDT substitution. In Device Manager the error details state: `This device cannot find enough free resources that it can use` when you boot up the laptop with the eGPU connected. I did _a lot_ of digging into this issue and found out it was due to the DSDT table being confined to a 32-bit address space. What is a DSDT table? DSDT is the main table within ACPI, which is what determines how devices communicate with each other about power usage. It also does stuff with the configuration of plug n' play devices. The problem is a GPU requires a lot of address space as it happens, more than is available in a 32-bit address space. This is the way it is because hardware manufacturers probably didn't anticipate the addition of other devices on to the system, so there was no need to use a bigger address space. 
 
 The solution to this issue is to create a new DSDT table file that can accomodate other devices and then force the system to use this new address space.
 
-### :books:How to create a new DST file
+### :books: How to create a new DST file
 
 * Disable Windows 10 from automatically downloading drivers: run `Sysdm.cpl` and click on the "Hardware" tab in the window. Click on "Device Installation Settings" and you want to choose "No" and save the changes
 
@@ -278,7 +278,7 @@ You will need to replace all instances of that with this instead:
 
 This compiles the `DSDT.ASL` into a `DSDT.AML` file. The `DSDT.AML` file is what we will now use with the DIY eGPU Setup 1.30 software.
 
-### :joystick:Nando4's DIY eGPU Setup 1.3x
+### :joystick: Nando4's DIY eGPU Setup 1.3x
 
 You'll need to go and buy [Nando4's DIY eGPU Setup 1.3x](https://egpu.io/egpu-setup-13x/) for the next part of this guide.
 
